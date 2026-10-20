@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f2eee7"><meta name="description" content="Una silla para hacer una pausa y escuchar la respiración.">
+  <title>Las heridas del aliento — reinterpretación 3D</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    :root{--ink:#26332f;--muted:#62716a;--paper:#f2eee7;--card:#fffdf9;--accent:#527464;--line:#d9ded6}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+    main{max-width:1050px;margin:auto;padding:34px 22px 60px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-size:.75rem;font-weight:700}
+    h1{font:clamp(2.4rem,7vw,5rem)/.98 Georgia,serif;letter-spacing:-.04em;margin:.35em 0 .22em}h2{font:2rem/1.1 Georgia,serif;margin:0 0 .55em}
+    .intro{max-width:670px;color:var(--muted);font-size:1.1rem}.layout{display:grid;grid-template-columns:1.35fr .85fr;gap:22px;margin-top:28px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}.viewer-card{padding:12px;overflow:hidden}
+    model-viewer{width:100%;height:min(65vh,540px);min-height:340px;background:radial-gradient(ellipse at 50% 72%,#e5e9e1,#f7f5ef 66%);border-radius:14px;--poster-color:transparent}
+    .hint{color:var(--muted);font-size:.9rem;padding:8px 10px 2px}.side{display:grid;gap:18px;align-content:start}
+    audio{display:block;width:100%;margin:14px 0 8px}button{border:0;border-radius:99px;padding:12px 18px;background:var(--accent);color:white;font:inherit;font-weight:650;cursor:pointer}button:hover{filter:brightness(.92)}
+    .small{font-size:.9rem;color:var(--muted)}.quote{font:1.4rem/1.35 Georgia,serif;color:var(--accent);margin:.3em 0 1em}.steps{margin:0;padding-left:1.2em;color:var(--muted)}.pillars{display:grid;gap:14px;margin-top:16px}.pillar{border-top:1px solid var(--line);padding-top:12px}.pillar h3{font:1.15rem Georgia,serif;color:var(--accent);margin:0 0 5px}.pillar p{margin:0;color:var(--muted)}footer{margin-top:24px;color:var(--muted);font-size:.85rem}
+    @media(max-width:760px){main{padding:24px 15px 42px}.layout{grid-template-columns:1fr}.card{padding:18px}model-viewer{height:52vh;min-height:300px}}
+  </style>
+</head>
+<body><main>
+  <div class="eyebrow">Reinterpretación multimedia · Ingeniería Multimedia</div>
+  <h1>Las heridas<br>del aliento</h1>
+  <p class="intro">Una reinterpretación tridimensional inspirada en la silla escultórica de la exposición <em>Las heridas del aliento</em>, de Carolina Fandiño. Esta versión no reproduce ni reemplaza la obra original: traduce algunas de sus formas y preguntas a una experiencia digital propia.</p>
+  <section class="layout" aria-label="Experiencia interactiva">
+    <div class="card viewer-card">
+      <model-viewer src="silla.glb" alt="Modelo tridimensional de una silla" camera-controls touch-action="pan-y" auto-rotate ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="1" exposure="1">
+        <button slot="ar-button">Ver en mi espacio</button>
+        <div slot="poster" class="hint">Cargando el modelo 3D…</div>
+      </model-viewer>
+      <div class="hint">Arrastra para girar · pellizca para acercar · en un teléfono compatible, toca “Ver en mi espacio”.</div>
+    </div>
+    <div class="side">
+      <article class="card"><div class="eyebrow">Escucha</div><h2>El aliento y la memoria</h2>
+        <p>La exposición relaciona la respiración con la fragilidad humana y con aquello que sostiene la voz y la vida. Este audio acompaña la observación; puedes activarlo cuando quieras.</p>
+        <audio controls preload="none"><source src="respiracion.mp3" type="audio/mpeg">Tu navegador no puede reproducir este audio.</audio>
+        <p class="small">Audio de respiración profunda: Craneosacral · Javier de María.</p>
+      </article>
+      <article class="card"><div class="eyebrow">Tres ideas de la obra</div>
+        <h2>Historias que deja el aliento</h2>
+        <div class="pillars">
+          <section class="pillar"><h3>1. La abuela</h3><p>La historia de la abuela de Carolina Fandiño aparece como inspiración inicial de la obra, ligada al trabajo textil y a las afectaciones respiratorias que recoge el relato de la visita.</p></section>
+          <section class="pillar"><h3>2. Triangle Shirtwaist</h3><p>La obra también dialoga con las historias de quienes han sufrido explotación laboral, especialmente las mujeres en la industria textil. Un ejemplo es el incendio de la fábrica Triangle Shirtwaist, en Nueva York, el 25 de marzo de 1911, donde murieron 146 personas, en su mayoría mujeres.</p></section>
+          <section class="pillar"><h3>3. El aliento y las heridas</h3><p>La exposición de Carolina Fandiño evoca la fragilidad de la respiración, la vida y la memoria corporal. En esta reinterpretación, la figura se hace invisible y permanece como huella.</p></section>
+        </div>
+        <p class="small" style="margin-top:16px">Esta pieza digital es una reinterpretación inspirada en la obra; no es una reproducción exacta.</p>
+        <p class="small"><a href="https://patrimoniocultural.bogota.unal.edu.co/las-heridas-del-aliento/" target="_blank" rel="noopener">Contexto de la exposición</a> · <a href="https://home.nps.gov/places/triangle-shirtwaist-factory-brown-building.htm" target="_blank" rel="noopener">Fuente sobre Triangle Shirtwaist</a></p>
+      </article>
+    </div>
+  </section>
+  <footer>Proyecto académico de reinterpretación · Inspirado en la exposición de Carolina Fandiño · No sustituye la obra original</footer>
+</main></body></html>
+
+
+
+
+
+
