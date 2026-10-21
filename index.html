@@ -1,59 +1,451 @@
+
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f2eee7"><meta name="description" content="Una silla para hacer una pausa y escuchar la respiración.">
-  <title>Las heridas del aliento — reinterpretación 3D</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f2eee7">
+  <meta name="description" content="Una reinterpretación multimedia de la silla de Las heridas del aliento, de Carolina Fandiño.">
+  <title>Las heridas del aliento — reinterpretación multimedia</title>
+
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
   <style>
-    :root{--ink:#26332f;--muted:#62716a;--paper:#f2eee7;--card:#fffdf9;--accent:#527464;--line:#d9ded6}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
-    main{max-width:1050px;margin:auto;padding:34px 22px 60px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-size:.75rem;font-weight:700}
-    h1{font:clamp(2.4rem,7vw,5rem)/.98 Georgia,serif;letter-spacing:-.04em;margin:.35em 0 .22em}h2{font:2rem/1.1 Georgia,serif;margin:0 0 .55em}
-    .intro{max-width:670px;color:var(--muted);font-size:1.1rem}.layout{display:grid;grid-template-columns:1.35fr .85fr;gap:22px;margin-top:28px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}.viewer-card{padding:12px;overflow:hidden}
-    model-viewer{width:100%;height:min(65vh,540px);min-height:340px;background:radial-gradient(ellipse at 50% 72%,#e5e9e1,#f7f5ef 66%);border-radius:14px;--poster-color:transparent}
-    .hint{color:var(--muted);font-size:.9rem;padding:8px 10px 2px}.side{display:grid;gap:18px;align-content:start}
-    audio{display:block;width:100%;margin:14px 0 8px}button{border:0;border-radius:99px;padding:12px 18px;background:var(--accent);color:white;font:inherit;font-weight:650;cursor:pointer}button:hover{filter:brightness(.92)}
-    .small{font-size:.9rem;color:var(--muted)}.quote{font:1.4rem/1.35 Georgia,serif;color:var(--accent);margin:.3em 0 1em}.steps{margin:0;padding-left:1.2em;color:var(--muted)}.pillars{display:grid;gap:14px;margin-top:16px}.pillar{border-top:1px solid var(--line);padding-top:12px}.pillar h3{font:1.15rem Georgia,serif;color:var(--accent);margin:0 0 5px}.pillar p{margin:0;color:var(--muted)}footer{margin-top:24px;color:var(--muted);font-size:.85rem}
-    @media(max-width:760px){main{padding:24px 15px 42px}.layout{grid-template-columns:1fr}.card{padding:18px}model-viewer{height:52vh;min-height:300px}}
+    :root {
+      --ink: #26332f;
+      --muted: #5f6e67;
+      --paper: #f2eee7;
+      --card: #fffdf9;
+      --accent: #527464;
+      --accent-dark: #344e43;
+      --line: #d9ded6;
+      --red: #9b4b43;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.7 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: auto;
+      padding: 38px 24px 64px;
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 34px;
+    }
+
+    .eyebrow,
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 750;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      font: clamp(2.6rem, 7vw, 5.4rem)/.98 Georgia, serif;
+      letter-spacing: -.045em;
+      margin: 0 auto 20px;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font: clamp(1.05rem, 2.2vw, 1.22rem)/1.7 Georgia, serif;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .credit {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(310px, .88fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 26px rgba(38, 51, 47, .045);
+    }
+
+    .viewer-card {
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    model-viewer {
+      display: block;
+      width: 100%;
+      height: min(66vh, 560px);
+      min-height: 350px;
+      background: radial-gradient(ellipse at 50% 72%, #e5e9e1, #f7f5ef 66%);
+      border-radius: 14px;
+      --poster-color: transparent;
+    }
+
+    model-viewer::part(default-ar-button) {
+      bottom: 18px;
+      right: 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      padding: 12px 18px;
+      font: 650 14px system-ui, sans-serif;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: .88rem;
+      padding: 10px 12px 3px;
+      text-align: center;
+    }
+
+    .side {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    h2 {
+      font: clamp(1.65rem, 3vw, 2rem)/1.15 Georgia, serif;
+      margin: 0 0 13px;
+      text-align: center;
+    }
+
+    p {
+      margin: 0 0 14px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .lead { font-size: 1.03rem; }
+
+    .content {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .content .card { padding: 25px 27px; }
+
+    .callout {
+      border-left: 3px solid var(--red);
+      padding: 12px 0 12px 16px;
+      margin: 16px 0;
+    }
+
+    .callout p { margin: 0; }
+
+    audio {
+      display: block;
+      width: 100%;
+      margin: 14px 0 8px;
+    }
+
+    .small {
+      font-size: .86rem;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent-dark);
+      text-underline-offset: 3px;
+    }
+
+    a:hover { text-decoration-thickness: 2px; }
+
+    .sources {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 15px;
+    }
+
+    .sources a { font-size: .9rem; }
+
+    footer {
+      max-width: 780px;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-size: .86rem;
+      text-align: center;
+    }
+
+    footer p { text-align: center; }
+
+    .creator {
+      margin-top: 10px;
+      font-size: .75rem;
+      color: #7b857f;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      main { padding: 28px 15px 44px; }
+
+      .layout,
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .content .card {
+        padding: 20px;
+      }
+
+      model-viewer {
+        height: 54vh;
+        min-height: 310px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
-<body><main>
-  <div class="eyebrow">Reinterpretación multimedia · Ingeniería Multimedia</div>
-  <h1>Las heridas<br>del aliento</h1>
-  <p class="intro">Una reinterpretación tridimensional inspirada en la silla escultórica de la exposición <em>Las heridas del aliento</em>, de Carolina Fandiño. Esta versión no reproduce ni reemplaza la obra original: traduce algunas de sus formas y preguntas a una experiencia digital propia.</p>
-  <section class="layout" aria-label="Experiencia interactiva">
+
+<body>
+<main>
+
+  <header class="hero">
+    <p class="eyebrow">Proyecto académico · Ingeniería Multimedia</p>
+
+    <h1>Las heridas<br>del aliento</h1>
+
+    <p class="subtitle">
+      Una reinterpretación tridimensional inspirada en la silla de la exposición
+      <em>Las heridas del aliento</em>, de Carolina Fandiño. Esta propuesta digital
+      parte de mi observación personal: no busca reemplazar la obra original,
+      sino acercar al público a algunas de las preguntas y sensaciones que me dejó.
+    </p>
+
+    <p class="credit">
+      Claustro de San Agustín · Bogotá · Visita del 13 de octubre de 2026
+    </p>
+  </header>
+
+  <!-- MODELO 3D Y REALIDAD AUMENTADA -->
+  <section class="layout" aria-label="Modelo 3D y audio">
+
     <div class="card viewer-card">
-      <model-viewer src="silla.glb" alt="Modelo tridimensional de una silla" camera-controls touch-action="pan-y" auto-rotate ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="1" exposure="1">
+      <model-viewer
+        src="silla.glb"
+        alt="Modelo tridimensional de una silla inspirado en la obra observada"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        shadow-intensity="1"
+        exposure="1">
+
         <button slot="ar-button">Ver en mi espacio</button>
-        <div slot="poster" class="hint">Cargando el modelo 3D…</div>
-      </model-viewer>
-      <div class="hint">Arrastra para girar · pellizca para acercar · en un teléfono compatible, toca “Ver en mi espacio”.</div>
-    </div>
-    <div class="side">
-      <article class="card"><div class="eyebrow">Escucha</div><h2>El aliento y la memoria</h2>
-        <p>La exposición relaciona la respiración con la fragilidad humana y con aquello que sostiene la voz y la vida. Este audio acompaña la observación; puedes activarlo cuando quieras.</p>
-        <audio controls preload="none"><source src="respiracion.mp3" type="audio/mpeg">Tu navegador no puede reproducir este audio.</audio>
-        <p class="small">Audio de respiración profunda: Craneosacral · Javier de María.</p>
-      </article>
-      <article class="card"><div class="eyebrow">Tres ideas de la obra</div>
-        <h2>Historias que deja el aliento</h2>
-        <div class="pillars">
-          <section class="pillar"><h3>1. La abuela</h3><p>La historia de la abuela de Carolina Fandiño aparece como inspiración inicial de la obra, ligada al trabajo textil y a las afectaciones respiratorias que recoge el relato de la visita.</p></section>
-          <section class="pillar"><h3>2. Triangle Shirtwaist</h3><p>La obra también dialoga con las historias de quienes han sufrido explotación laboral, especialmente las mujeres en la industria textil. Un ejemplo es el incendio de la fábrica Triangle Shirtwaist, en Nueva York, el 25 de marzo de 1911, donde murieron 146 personas, en su mayoría mujeres.</p></section>
-          <section class="pillar"><h3>3. El aliento y las heridas</h3><p>La exposición de Carolina Fandiño evoca la fragilidad de la respiración, la vida y la memoria corporal. En esta reinterpretación, la figura se hace invisible y permanece como huella.</p></section>
+
+        <div slot="poster" class="hint">
+          Cargando el modelo 3D…
         </div>
-        <p class="small" style="margin-top:16px">Esta pieza digital es una reinterpretación inspirada en la obra; no es una reproducción exacta.</p>
-        <p class="small"><a href="https://patrimoniocultural.bogota.unal.edu.co/las-heridas-del-aliento/" target="_blank" rel="noopener">Contexto de la exposición</a> · <a href="https://home.nps.gov/places/triangle-shirtwaist-factory-brown-building.htm" target="_blank" rel="noopener">Fuente sobre Triangle Shirtwaist</a></p>
+      </model-viewer>
+
+      <p class="hint">
+        Arrastra para girar el modelo y usa los controles para acercarte.
+        En un teléfono compatible, selecciona «Ver en mi espacio» para probar
+        la realidad aumentada.
+      </p>
+    </div>
+
+    <div class="side">
+
+      <!-- AUDIO -->
+      <article class="card">
+        <p class="section-label">Escucha</p>
+        <h2>El aliento y la memoria</h2>
+
+        <p class="lead">
+          La respiración suele pasar desapercibida, aunque está ligada a la vida.
+          En esta experiencia añadí un audio de respiración para acompañar la
+          observación y crear un ambiente más inmersivo. Puedes escucharlo
+          mientras exploras el modelo o mantenerlo en silencio.
+        </p>
+
+        <audio controls preload="none">
+          <source src="respiracion.mp3" type="audio/mpeg">
+          Tu navegador no puede reproducir este audio.
+        </audio>
+
+        <p class="small">
+          Audio de respiración profunda: Craneosacral · Javier de María.
+        </p>
       </article>
+
     </div>
   </section>
-  <footer>Proyecto académico de reinterpretación · Inspirado en la exposición de Carolina Fandiño · No sustituye la obra original</footer>
-</main></body></html>
 
+  <!-- CONTEXTO DE LA EXPOSICIÓN -->
+  <div class="content">
 
+    <section class="card">
+      <p class="section-label">Contexto de la exposición</p>
+      <h2>Respirar, recordar, sentir</h2>
 
+      <p>
+        La exposición <em>Las heridas del aliento</em>, de Carolina Fandiño,
+        propone pensar en la respiración como algo que sostiene la voz y la vida,
+        pero que también recuerda la fragilidad del cuerpo. Sus imágenes y
+        materiales evocan superficies parecidas a la piel, membranas, tejidos
+        internos, heridas y rastros de sangre. Estos elementos conectan el cuerpo
+        con la memoria y con aquello que puede dejar una marca.
+      </p>
 
+      <p>
+        Esta es una síntesis del contexto de la exposición a partir de la
+        información institucional. No significa que cada detalle de mi modelo
+        represente literalmente la intención de la artista.
+      </p>
 
+      <div class="sources">
+        <a href="https://patrimoniocultural.bogota.unal.edu.co/las-heridas-del-aliento/"
+           target="_blank" rel="noopener">
+          Consultar la página oficial de la exposición ↗
+        </a>
+      </div>
+    </section>
 
+    <!-- OBSERVACIÓN PERSONAL -->
+    <section class="card">
+      <p class="section-label">Mi observación</p>
+      <h2>Lo que vi en la silla</h2>
+
+      <p>
+        Al principio, la silla no me pareció una obra especialmente compleja y
+        no entendí de inmediato qué quería transmitir. Sin embargo, sus fibras
+        rojas, claras y oscuras, junto con las pequeñas motas negras del respaldo,
+        me produjeron una impresión fuerte. Los filamentos oscuros me hicieron
+        pensar en unos pulmones afectados por el humo y la contaminación; el rojo
+        me evocó la sangre, la guerra y el dolor.
+      </p>
+
+      <p>
+        Durante el recorrido nos explicaron que Carolina Fandiño se inspiró en
+        la historia de su abuela para desarrollar esta obra. Según el relato oral
+        que recibimos, su abuela trabajó durante muchos años en la industria textil
+        y murió por problemas respiratorios relacionados con la contaminación a
+        la que estuvo expuesta durante ese tiempo. Conocer esta historia me hizo
+        pensar en las difíciles condiciones que pudo vivir y en las consecuencias
+        que el trabajo y la contaminación dejaron en su salud. Este contexto le dio
+        un significado más profundo a la silla y fue una de las razones por las
+        que terminó siendo una de las obras que más me impactaron.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Una distinción importante:</strong>
+          la historia de la abuela corresponde al relato que escuché durante la
+          visita; la imagen de los pulmones contaminados y las asociaciones con
+          la guerra y el dolor son interpretaciones que construí al observar la obra.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTEXTO SOCIAL -->
+    <section class="card">
+      <p class="section-label">Memoria y contexto social</p>
+      <h2>Trabajo textil y heridas</h2>
+
+      <p>
+        Durante el recorrido también nos hablaron del incendio de la fábrica
+        Triangle Shirtwaist, ocurrido en Nueva York el 25 de marzo de 1911.
+        Murieron 146 personas, muchas de ellas mujeres jóvenes que trabajaban
+        en la confección. Este caso permite pensar en los riesgos y las condiciones
+        laborales de las mujeres en la industria textil, sin asumir que la silla
+        ilustra directamente el incendio.
+      </p>
+
+      <p>
+        Al relacionar ese contexto con el relato de la abuela y con los colores
+        y filamentos de la silla, pensé en cómo el trabajo, la contaminación y
+        las condiciones sociales pueden dejar consecuencias en el cuerpo. Para mí,
+        la obra reúne sensaciones de fragilidad y dolor, pero también invita a
+        preguntarse por las historias humanas que a veces quedan detrás de los objetos.
+      </p>
+
+      <div class="sources">
+        <a href="https://home.nps.gov/places/triangle-shirtwaist-factory-brown-building.htm"
+           target="_blank" rel="noopener">
+          Leer sobre Triangle Shirtwaist ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- DESARROLLO DEL PROYECTO -->
+    <section class="card">
+      <p class="section-label">Cómo se construyó esta propuesta</p>
+      <h2>De la observación a la experiencia digital</h2>
+
+      <p>
+        Primero observé la silla y registré los detalles que más llamaron mi
+        atención. Después busqué información complementaria para entender mejor
+        los temas de la exposición y desarrollar mi propia interpretación.
+        A partir de esa observación modelé la silla en 3D y construí esta página
+        web en HTML.
+      </p>
+
+      <p>
+        Organicé la experiencia con la opción de realidad aumentada, el audio de
+        respiración y el desarrollo de esta página web. También preparé un código
+        QR que permite acceder directamente al proyecto. Mi objetivo fue transformar
+        lo observado en una pieza de comunicación multimedia que invitara a detenerse,
+        mirar los detalles y pensar en las historias que pueden estar asociadas a una obra.
+      </p>
+
+      <p>
+        Desarrollé el modelo 3D tomando como referencia la silla que observé en la
+        exposición. Mi intención era acercarme lo más posible a su forma y a los
+        detalles que me llamaron la atención, especialmente las fibras del respaldo.
+        Aunque no conseguí reproducirla exactamente, el modelo conserva elementos
+        que me inspiraron y funciona como una reinterpretación propia de la obra.
+      </p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>
+      Proyecto académico de Ingeniería Multimedia. Modelo 3D inspirado en la silla
+      observada en <em>Las heridas del aliento</em>, de Carolina Fandiño.
+      Esta reinterpretación no sustituye ni reproduce exactamente la obra original.
+    </p>
+
+    <p class="creator">Página creada por Lina Guarin</p>
+  </footer>
+
+</main>
+</body>
+</html>
